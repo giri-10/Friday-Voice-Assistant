@@ -3,6 +3,7 @@ import pyttsx3
 import speech_recognition as sr
 import webbrowser
 import wikipedia
+import pyaudio
 
 
 def assistant(audio):
