@@ -9,7 +9,7 @@ import smtplib
 # sapi5 is a speech api from Microsoft
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty('voices', voices[1].id)  # [0] - David & [1] - Zira
+engine.setProperty('voices', voices[1].id)
 
 
 def speak(audio):
@@ -56,10 +56,10 @@ def takeCommand():
 
 if __name__ == "__main__":
     greeting()
-    speak()
+    
     while True:
         query = takeCommand().lower()
-
+        chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
         # Logic for executing tasks based on query
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
@@ -70,26 +70,19 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'open youtube' in query:
-            webbrowser.open("youtube.com")
+            webbrowser.get(chrome_path).open("youtube.com")
 
         elif 'open google' in query:
-            webbrowser.open("google.com")
+            webbrowser.get(chrome_path).open("google.com")
 
-        elif 'open stackoverflow' in query:
-            webbrowser.open("stackoverflow.com")   
-
-
-        elif 'play music' in query:
-            music_dir = 'D:\\Music'
-            songs = os.listdir(music_dir)
-            print(songs)    
-            os.startfile(os.path.join(music_dir, songs[0]))
+        elif 'open github' in query:
+            webbrowser.get(chrome_path).open("github.com")   
 
         elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open vs code' in query:
-            vscodePath = "C:\\Users\\Giridharan U\\AppData\\Local\\rograms\\Microsoft VS Code\\Code.exe"
-            os.startfile(vscodePath)
+        elif 'open photoshop' in query:
+            PPath = "C:\\Program Files\\Adobe\\Adobe Photoshop 2022\\Photoshop.exe"
+            os.startfile(PPath)
   
