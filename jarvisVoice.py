@@ -69,12 +69,12 @@ if __name__ == "__main__":
             speak("According to Wikipedia")
             print(results)
             speak(results)
-        
+
         elif 'search google' in query:
             speak('Searching in Google...')
             query = query.replace("search google", "")
             kt.search(query)
-                    
+
         elif 'open youtube' in query:
             webbrowser.get(chrome_path).open("youtube.com")
 
@@ -82,10 +82,10 @@ if __name__ == "__main__":
             webbrowser.get(chrome_path).open("google.com")
 
         elif 'open github' in query:
-            webbrowser.get(chrome_path).open("github.com")   
+            webbrowser.get(chrome_path).open("github.com")
 
         elif 'time' in query:
-            strTime = datetime.datetime.now().strftime("%H:%M:%S")    
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
 
         elif 'open photoshop' in query:
@@ -95,6 +95,24 @@ if __name__ == "__main__":
         elif 'play music' in query:
             music_dir = 'C:\\Music'
             songs = os.listdir(music_dir)
-            print(songs)    
+            print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
-  
+
+        elif 'open spotify' in query:
+            webbrowser.get(chrome_path).open("spotify.com")
+
+        elif 'open cyberpunk' in query:
+            CPath = "C:\\Program Files\\Cyberpunk.2077.v1.6\\Cyberpunk.2077.v1.6\\REDprelauncher.exe"
+            os.startfile(CPath)
+
+        elif 'open control panel' in query:
+            os.system("control panel")
+
+        elif 'open calculator' in query:
+            os.system("calc")
+
+        elif 'open' and 'website' in query:
+            query = query.replace("open" and "website", "")
+            dotcom=".com"
+            x=query+dotcom
+            webbrowser.get(chrome_path).open(x)
