@@ -8,12 +8,10 @@ pip install pyaudio
 pip3 install pywhatkit
  <br><br>
 Functions: 
-->> open youtube
-->> open google
-->> open github
-->> open photoshop
-->> time
-->> play music
-->> searching in wikipedia
-->> searching in google
-
+->> open youtube<br><br><br>
+->> open google<br><br><br>
+->> open github<br><br><br>
+->> open photoshop<br><br>
+->> play music<br><br><br>
+->> searching in wikipedia<br><br>>
+->> searching in google<br><br>
