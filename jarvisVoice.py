@@ -5,6 +5,7 @@ import wikipedia #pip install wikipedia
 import webbrowser
 import os
 import smtplib
+import pywhatkit as kt
 
 # sapi5 is a speech api from Microsoft
 engine = pyttsx3.init('sapi5')
@@ -29,7 +30,7 @@ def greeting():
     else:
         speak("Good Night!!")
 
-    speak("I am Jarvis . How may I help you?")
+    speak("This is Jarvis . How may I help you?")
 
 
 def takeCommand():
@@ -68,7 +69,12 @@ if __name__ == "__main__":
             speak("According to Wikipedia")
             print(results)
             speak(results)
-
+        
+        elif 'search google' in query:
+            speak('Searching in Google...')
+            query = query.replace("search google", "")
+            kt.search(query)
+                    
         elif 'open youtube' in query:
             webbrowser.get(chrome_path).open("youtube.com")
 
@@ -85,4 +91,10 @@ if __name__ == "__main__":
         elif 'open photoshop' in query:
             PPath = "C:\\Program Files\\Adobe\\Adobe Photoshop 2022\\Photoshop.exe"
             os.startfile(PPath)
+
+        elif 'play music' in query:
+            music_dir = 'C:\\Music'
+            songs = os.listdir(music_dir)
+            print(songs)    
+            os.startfile(os.path.join(music_dir, songs[0]))
   
