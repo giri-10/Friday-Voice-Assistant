@@ -17,8 +17,6 @@ def speak(audio):
     engine.runAndWait()
 
 # Function to greet user according to the time
-
-
 def greeting():
     hour = int(datetime.datetime.now().hour)
 
@@ -38,9 +36,10 @@ def takeCommand():
     # It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
+    
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
 
     try:
@@ -55,16 +54,18 @@ def takeCommand():
     return query
 
 
-def sendEmail(to, content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
-    server.close()
+
+# def sendEmail(to, content):
+#     server = smtplib.SMTP('smtp.gmail.com', 587)
+#     server.ehlo()
+#     server.starttls()
+#     server.login('youremail@gmail.com', 'your-password')
+#     server.sendmail('youremail@gmail.com', to, content)
+#     server.close()
 
 if __name__ == "__main__":
     greeting()
+    speak()
     while True:
     # if 1:
         query = takeCommand().lower()
@@ -73,7 +74,7 @@ if __name__ == "__main__":
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences=2)
+            results = wikipedia.summary(query, sentences=3)
             speak("According to Wikipedia")
             print(results)
             speak(results)
@@ -89,26 +90,26 @@ if __name__ == "__main__":
 
 
         elif 'play music' in query:
-            music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
+            music_dir = 'D:\\Music'
             songs = os.listdir(music_dir)
             print(songs)    
             os.startfile(os.path.join(music_dir, songs[0]))
 
-        elif 'the time' in query:
+        elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open code' in query:
-            codePath = "C:\\Users\\Haris\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-            os.startfile(codePath)
+        elif 'open vs code' in query:
+            vscodePath = "C:\\Users\\Giridharan U\\AppData\\Local\\rograms\\Microsoft VS Code\\Code.exe"
+            os.startfile(vscodePath)
 
-        elif 'email to harry' in query:
-            try:
-                speak("What should I say?")
-                content = takeCommand()
-                to = "harryyourEmail@gmail.com"    
-                sendEmail(to, content)
-                speak("Email has been sent!")
-            except Exception as e:
-                print(e)
-                speak("Sorry my friend harry bhai. I am not able to send this email")    
+        # elif 'email to Giri' in query:
+        #     try:
+        #         speak("What should I say?")
+        #         content = takeCommand()
+        #         to = "Email.com"    
+        #         sendEmail(to, content)
+        #         speak("Email has been sent!")
+        #     except Exception as e:
+        #         print(e)
+        #         speak("Sorry, Sir. I am not able to send this email")    
