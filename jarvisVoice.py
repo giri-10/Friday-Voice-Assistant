@@ -54,20 +54,10 @@ def takeCommand():
     return query
 
 
-
-# def sendEmail(to, content):
-#     server = smtplib.SMTP('smtp.gmail.com', 587)
-#     server.ehlo()
-#     server.starttls()
-#     server.login('youremail@gmail.com', 'your-password')
-#     server.sendmail('youremail@gmail.com', to, content)
-#     server.close()
-
 if __name__ == "__main__":
     greeting()
     speak()
     while True:
-    # if 1:
         query = takeCommand().lower()
 
         # Logic for executing tasks based on query
@@ -102,14 +92,4 @@ if __name__ == "__main__":
         elif 'open vs code' in query:
             vscodePath = "C:\\Users\\Giridharan U\\AppData\\Local\\rograms\\Microsoft VS Code\\Code.exe"
             os.startfile(vscodePath)
-
-        # elif 'email to Giri' in query:
-        #     try:
-        #         speak("What should I say?")
-        #         content = takeCommand()
-        #         to = "Email.com"    
-        #         sendEmail(to, content)
-        #         speak("Email has been sent!")
-        #     except Exception as e:
-        #         print(e)
-        #         speak("Sorry, Sir. I am not able to send this email")    
+  
