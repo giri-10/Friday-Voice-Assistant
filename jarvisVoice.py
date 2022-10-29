@@ -6,6 +6,12 @@ import webbrowser
 import os
 import smtplib
 import pywhatkit as kt
+from selenium import webdriver
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+
 
 # sapi5 is a speech api from Microsoft
 engine = pyttsx3.init('sapi5')
@@ -37,7 +43,7 @@ def takeCommand():
     # It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
-    
+
     with sr.Microphone() as source:
         print("Listening...")
         r.adjust_for_ambient_noise(source)
@@ -54,11 +60,12 @@ def takeCommand():
         return "None"
     return query
 
+temp_variable = 0
 
 if __name__ == "__main__":
     greeting()
-    
-    while True:
+
+    while temp_variable < 1:
         query = takeCommand().lower()
         chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
         # Logic for executing tasks based on query
@@ -116,3 +123,13 @@ if __name__ == "__main__":
             dotcom=".com"
             x=query+dotcom
             webbrowser.get(chrome_path).open(x)
+
+        elif 'in maps' in query:
+            query = query.replace("search" and "in maps", "")
+            driver = webdriver.Chrome(executable_path='C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\chromedriver.exe')
+            driver.get('https://www.google.com/maps/')
+            searchBox = driver.find_element(By.ID, 'searchboxinput').send_keys(query + Keys.ENTER)
+            time.sleep(10000)
+            driver.quit()
+
+        temp_variable += 1
