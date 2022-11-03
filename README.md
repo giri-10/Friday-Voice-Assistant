@@ -14,4 +14,5 @@ Functions: <br>
 ->> open photoshop<br><br>
 ->> play music<br><br>
 ->> searching in wikipedia<br><br>
-->> searching in google<br><br>
+->> searching in Google<br><br>
+->> searching in Google Maps<br><br>
