@@ -6,8 +6,11 @@ pip install speechRecognition<br><br>
 pip install wikipedia<br><br>
 pip install pyaudio<br><br>
 pip3 install pywhatkit<br><br>
+pip install selenium<br><br>
+pip install tk<br><br>
  <br>
 Functions: <br>
+->> login system
 ->> open youtube<br><br>
 ->> open google<br><br>
 ->> open github<br><br>
@@ -16,3 +19,4 @@ Functions: <br>
 ->> searching in wikipedia<br><br>
 ->> searching in Google<br><br>
 ->> searching in Google Maps<br><br>
+->> todo list
