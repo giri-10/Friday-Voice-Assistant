@@ -21,6 +21,6 @@ Functions: <br>
 ->> searching in wikipedia<br><br>
 ->> searching in Google<br><br>
 ->> searching in Google Maps<br><br>
-->> todo list<br><br><br>
+->> todo list<br><br>
 ->> tells jokes<br><br>
 ->> news<br><br>
