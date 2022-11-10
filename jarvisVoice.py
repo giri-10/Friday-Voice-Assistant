@@ -13,6 +13,11 @@ from tkinter import messagebox
 import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import requests
+import pyjokes
+import bs4
+from bs4 import BeautifulSoup as soup
+from urllib.request import urlopen
 
 
 # sapi5 is a speech api from Microsoft
@@ -233,5 +238,40 @@ if __name__ == "__main__":
                         tasks_list_file.write(line)
 
                     tasks_list_file.close()
+        elif 'weather report' in query:
+                query = query.replace("weather report", "")
+                print(query)
+                print('Displaying Weather report for: ' + query)
+
+                #fetch the weater details
+                url = 'https://wttr.in/{}'.format(query)
+                res = requests.get(url)
+
+                #display the result!
+                print(res.text)
+                speak(res.text)
+
+        #category of jokes: neutral, twister, all
+        elif 'tell jokes' in query:
+            My_joke = pyjokes.get_joke(language="en", category="all")
+            print(My_joke)
+            speak(My_joke)
+        elif 'todays news' in query:
+            news_url="https://news.google.com/news/rss"
+            Client=urlopen(news_url)
+            xml_page=Client.read()
+            Client.close()
+
+            soup_page=soup(xml_page,"xml")
+            news_list=soup_page.findAll("item")
+            for news in news_list:
+                print(news.title.text)
+                speak(news.title.text)
+                print(news.link.text)
+                speak(news.link.text)
+                print(news.pubDate.text)
+                speak(news.pubDate.text)
+                print("-"*60)
+
 
         temp_variable += 1
