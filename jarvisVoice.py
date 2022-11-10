@@ -11,9 +11,9 @@ import time
 from tkinter import *
 from tkinter import messagebox
 import os
+import requests
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import requests
 import pyjokes
 import bs4
 from bs4 import BeautifulSoup as soup
