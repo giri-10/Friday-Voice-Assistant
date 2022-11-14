@@ -214,7 +214,14 @@ if __name__ == "__main__":
                 print(news.pubDate.text)
                 speak(news.pubDate.text)
                 print("-"*60)
-
+        
+        elif 'weather' in query:
+            query = query.replace("weather", "")
+            print(query)
+            print('Displaying Weater report for: ' + query)
+            url = 'https://wttr.in/{}'.format(query)
+            res = requests.get(url)
+            print(res.text)
 
         elif 'Todo list' or 'to do list' in query:
             def newTask():
