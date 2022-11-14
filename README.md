@@ -1,4 +1,4 @@
-#* Jarvis: Your personal voice assistant*
+# Jarvis: Your personal voice assistant
 
 Modules to install:<br><br>
 pip install pyttsx3<br><br>
