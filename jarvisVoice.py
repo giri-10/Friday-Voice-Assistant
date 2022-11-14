@@ -191,80 +191,86 @@ if __name__ == "__main__":
             time.sleep(10000)
             driver.quit()
 
-        # elif 'todo list' and 'to do list' and 'Todo list'in query:
-        #     #To do list using tkinter 
-        #     # Initializing the python to do list GUI window
-        #     root = Tk()
-        #     root.title('Jarvis To-Do List')
-        #     root.geometry('300x400')
-        #     root.resizable(0, 0)
-        #     root.config(bg="blue")
-        #     # Heading Label
-        #     Label(root, text='TechVidvan Python To Do List', bg='PaleVioletRed', font=("Comic Sans MS", 15), wraplength=300).place(x=35, y=0)
-        #     # Listbox with all the tasks with a Scrollbar
-        #     tasks = Listbox(root, selectbackground='Gold', bg='Silver', font=('Helvetica', 12), height=12, width=25)
-        #     scroller = Scrollbar(root, orient=VERTICAL, command=tasks.yview)
-        #     scroller.place(x=260, y=50, height=232)
-        #     tasks.config(yscrollcommand=scroller.set)
-        #     tasks.place(x=35, y=50)
-        #     # Adding items to the Listbox
-        #     with open('tasks.txt', 'r+') as tasks_list:
-        #         for task in tasks_list:
-        #             tasks.insert(END, task)
-        #         tasks_list.close()
-        #     # Creating the Entry widget where the user can enter a new item
-        #     new_item_entry = Entry(root, width=37)
-        #     new_item_entry.place(x=35, y=310)
-        #     # Finalizing the window
-        #     root.update()
-        #     root.mainloop()
-        #     # Adding and Deleting items functions
-        #     def add_item(entry: Entry, listbox: Listbox):
-        #         new_task = entry.get()
+        elif 'todo list' and 'to do list' and 'Todo list'in query:
+                def newTask():
+                    task = my_entry.get()
+                    if task != "":
+                     lb.insert(END, task)
+                     my_entry.delete(0, "end")
+                    else:
+                     messagebox.showwarning("warning", "Please enter some task.")
 
-        #         listbox.insert(END, new_task)
+                def deleteTask():
+                    lb.delete(ANCHOR)
+    
+                ws = Tk()
+                ws.geometry('500x450+500+200')
+                ws.title('PythonGuides')
+                ws.config(bg='#223441')
+                ws.resizable(width=False, height=False)
 
-        #         with open('tasks.txt', 'a') as tasks_list_file:
-        #             tasks_list_file.write(f'\n{new_task}')
+                frame = Frame(ws)
+                frame.pack(pady=10)
+
+                lb = Listbox(
+                    frame,
+                    width=25,
+                    height=8,
+                    font=('Times', 18),
+                    bd=0,
+                    fg='#464646',
+                    highlightthickness=0,
+                    selectbackground='#a6a6a6',
+                    activestyle="none",
+                    
+                )
+                lb.pack(side=LEFT, fill=BOTH)
+
+                task_list = []
+
+                for item in task_list:
+                    lb.insert(END, item)
+
+                sb = Scrollbar(frame)
+                sb.pack(side=RIGHT, fill=BOTH)
+
+                lb.config(yscrollcommand=sb.set)
+                sb.config(command=lb.yview)
+
+                my_entry = Entry(
+                    ws,
+                    font=('times', 24)
+                    )
+
+                my_entry.pack(pady=20)
+
+                button_frame = Frame(ws)
+                button_frame.pack(pady=20)
+
+                addTask_btn = Button(
+                    button_frame,
+                    text='Add Task',
+                    font=('times 14'),
+                    bg='#c5f776',
+                    padx=20,
+                    pady=10,
+                    command=newTask
+                )
+                addTask_btn.pack(fill=BOTH, expand=True, side=LEFT)
+
+                delTask_btn = Button(
+                    button_frame,
+                    text='Delete Task',
+                    font=('times 14'),
+                    bg='#ff8b61',
+                    padx=20,
+                    pady=10,
+                    command=deleteTask
+                )
+                delTask_btn.pack(fill=BOTH, expand=True, side=LEFT)
 
 
-        #     def delete_item(listbox: Listbox):
-        #         listbox.delete(ACTIVE)
-
-        #         with open('tasks.txt', 'r+') as tasks_list_file:
-        #             lines = tasks_list_file.readlines()
-
-        #             tasks_list_file.truncate()
-
-        #             for line in lines:
-        #                 if listbox.get(ACTIVE) == line[:-2]:
-        #                     lines.remove(line)
-        #                 tasks_list_file.write(line)
-
-        #             tasks_list_file.close()
-        #     # Creating the Buttons
-        #     add_btn = Button(root, text='Add Item', bg='Azure', width=10, font=('Helvetica', 12),
-        #                     command=lambda: add_item(new_item_entry, tasks))
-        #     add_btn.place(x=45, y=350)
-        #     delete_btn = Button(root, text='Delete Item', bg='Azure', width=10, font=('Helvetica', 12),
-        #                     command=lambda: delete_item(tasks))
-        #     delete_btn.place(x=150, y=350)
-        # elif 'weather in' in query:
-        #         query = query.replace("weather in", "")
-        #         print(query)
-        #         print('Displaying Weather report for: ' + query)
-
-        #         #fetch the weather details
-        #         url = 'https://wttr.in/{}'.format(query)
-        #         res = requests.get(url)
-
-        #         #display the result!
-        #         print((res.text).encode('utf-32'))
-        #         # speak(res.text)
-        #         # enc = (res.text).encode('utf-8', errors='ignore')
-        #         # dec = enc.decode('utf-8', errors='ignore')
-        #         # print(dec)
-        #         # speak(dec)
+                ws.mainloop()
 
         #category of jokes: neutral, twister, all
         elif 'tell jokes' in query:
