@@ -1,19 +1,19 @@
-# Jarvis: Your personal voice assistant
+#* Jarvis: Your personal voice assistant*
 
 Modules to install:<br><br>
 pip install pyttsx3<br><br>
 pip install speechRecognition<br><br>
 pip install wikipedia<br><br>
 pip install pyaudio<br><br>
-pip3 install pywhatkit<br><br>  (for google search)
-pip install selenium<br><br>  (for gmaps)
-pip install tk<br><br>   (for login and todo list)
-pip install pyjokes<br><br>  (for jokes)
-pip install bs4<br><br>  (for news)
+pip3 install pywhatkit (for google search)<br><br>
+pip install selenium (for gmaps) <br><br>
+pip install tk (for login and todo list) <br><br>
+pip install pyjokes (for jokes) <br><br>
+pip install bs4 (for news)<br><br>
 
  <br>
 Functions: <br>
-->> login system
+->> login system<br><br>
 ->> open youtube<br><br>
 ->> open google<br><br>
 ->> open github<br><br>
