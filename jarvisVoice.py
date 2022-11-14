@@ -18,6 +18,9 @@ import pyjokes
 import bs4
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
+import sys
+
+
 
 
 # sapi5 is a speech api from Microsoft
@@ -44,7 +47,7 @@ def Login_Info():
  
 root = Tk()
 root.title("Login: Jarvis")
-root.iconbitmap(r'C:\\Users\\Giridharan U\\Downloads\\j.ico') #change icon path
+root.iconbitmap(r'C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\jarvisLogo.ico') #change icon path
 
 
 # bgimg= tk.PhotoImage(file = r'C:\\Users\\Giridharan U\\Downloads\\download.ppm')
@@ -188,83 +191,88 @@ if __name__ == "__main__":
             time.sleep(10000)
             driver.quit()
 
-        elif 'todo list' in query:
-            #To do list using tkinter 
-            # Initializing the python to do list GUI window
-            root = Tk()
-            root.title('Jarvis To-Do List')
-            root.geometry('300x400')
-            root.resizable(0, 0)
-            root.config(bg="blue")
-            # Heading Label
-            Label(root, text='TechVidvan Python To Do List', bg='PaleVioletRed', font=("Comic Sans MS", 15), wraplength=300).place(x=35, y=0)
-            # Listbox with all the tasks with a Scrollbar
-            tasks = Listbox(root, selectbackground='Gold', bg='Silver', font=('Helvetica', 12), height=12, width=25)
-            scroller = Scrollbar(root, orient=VERTICAL, command=tasks.yview)
-            scroller.place(x=260, y=50, height=232)
-            tasks.config(yscrollcommand=scroller.set)
-            tasks.place(x=35, y=50)
-            # Adding items to the Listbox
-            with open('tasks.txt', 'r+') as tasks_list:
-                for task in tasks_list:
-                    tasks.insert(END, task)
-                tasks_list.close()
-            # Creating the Entry widget where the user can enter a new item
-            new_item_entry = Entry(root, width=37)
-            new_item_entry.place(x=35, y=310)
-            # Creating the Buttons
-            add_btn = Button(root, text='Add Item', bg='Azure', width=10, font=('Helvetica', 12),
-                            command=lambda: add_item(new_item_entry, tasks))
-            add_btn.place(x=45, y=350)
-            delete_btn = Button(root, text='Delete Item', bg='Azure', width=10, font=('Helvetica', 12),
-                            command=lambda: delete_item(tasks))
-            delete_btn.place(x=150, y=350)
-            # Finalizing the window
-            root.update()
-            root.mainloop()
-            # Adding and Deleting items functions
-            def add_item(entry: Entry, listbox: Listbox):
-                new_task = entry.get()
+        # elif 'todo list' and 'to do list' and 'Todo list'in query:
+        #     #To do list using tkinter 
+        #     # Initializing the python to do list GUI window
+        #     root = Tk()
+        #     root.title('Jarvis To-Do List')
+        #     root.geometry('300x400')
+        #     root.resizable(0, 0)
+        #     root.config(bg="blue")
+        #     # Heading Label
+        #     Label(root, text='TechVidvan Python To Do List', bg='PaleVioletRed', font=("Comic Sans MS", 15), wraplength=300).place(x=35, y=0)
+        #     # Listbox with all the tasks with a Scrollbar
+        #     tasks = Listbox(root, selectbackground='Gold', bg='Silver', font=('Helvetica', 12), height=12, width=25)
+        #     scroller = Scrollbar(root, orient=VERTICAL, command=tasks.yview)
+        #     scroller.place(x=260, y=50, height=232)
+        #     tasks.config(yscrollcommand=scroller.set)
+        #     tasks.place(x=35, y=50)
+        #     # Adding items to the Listbox
+        #     with open('tasks.txt', 'r+') as tasks_list:
+        #         for task in tasks_list:
+        #             tasks.insert(END, task)
+        #         tasks_list.close()
+        #     # Creating the Entry widget where the user can enter a new item
+        #     new_item_entry = Entry(root, width=37)
+        #     new_item_entry.place(x=35, y=310)
+        #     # Finalizing the window
+        #     root.update()
+        #     root.mainloop()
+        #     # Adding and Deleting items functions
+        #     def add_item(entry: Entry, listbox: Listbox):
+        #         new_task = entry.get()
 
-                listbox.insert(END, new_task)
+        #         listbox.insert(END, new_task)
 
-                with open('tasks.txt', 'a') as tasks_list_file:
-                    tasks_list_file.write(f'\n{new_task}')
+        #         with open('tasks.txt', 'a') as tasks_list_file:
+        #             tasks_list_file.write(f'\n{new_task}')
 
 
-            def delete_item(listbox: Listbox):
-                listbox.delete(ACTIVE)
+        #     def delete_item(listbox: Listbox):
+        #         listbox.delete(ACTIVE)
 
-                with open('tasks.txt', 'r+') as tasks_list_file:
-                    lines = tasks_list_file.readlines()
+        #         with open('tasks.txt', 'r+') as tasks_list_file:
+        #             lines = tasks_list_file.readlines()
 
-                    tasks_list_file.truncate()
+        #             tasks_list_file.truncate()
 
-                    for line in lines:
-                        if listbox.get(ACTIVE) == line[:-2]:
-                            lines.remove(line)
-                        tasks_list_file.write(line)
+        #             for line in lines:
+        #                 if listbox.get(ACTIVE) == line[:-2]:
+        #                     lines.remove(line)
+        #                 tasks_list_file.write(line)
 
-                    tasks_list_file.close()
-        elif 'weather report' in query:
-                query = query.replace("weather report", "")
-                print(query)
-                print('Displaying Weather report for: ' + query)
+        #             tasks_list_file.close()
+        #     # Creating the Buttons
+        #     add_btn = Button(root, text='Add Item', bg='Azure', width=10, font=('Helvetica', 12),
+        #                     command=lambda: add_item(new_item_entry, tasks))
+        #     add_btn.place(x=45, y=350)
+        #     delete_btn = Button(root, text='Delete Item', bg='Azure', width=10, font=('Helvetica', 12),
+        #                     command=lambda: delete_item(tasks))
+        #     delete_btn.place(x=150, y=350)
+        # elif 'weather in' in query:
+        #         query = query.replace("weather in", "")
+        #         print(query)
+        #         print('Displaying Weather report for: ' + query)
 
-                #fetch the weater details
-                url = 'https://wttr.in/{}'.format(query)
-                res = requests.get(url)
+        #         #fetch the weather details
+        #         url = 'https://wttr.in/{}'.format(query)
+        #         res = requests.get(url)
 
-                #display the result!
-                print(res.text)
-                speak(res.text)
+        #         #display the result!
+        #         print((res.text).encode('utf-32'))
+        #         # speak(res.text)
+        #         # enc = (res.text).encode('utf-8', errors='ignore')
+        #         # dec = enc.decode('utf-8', errors='ignore')
+        #         # print(dec)
+        #         # speak(dec)
 
         #category of jokes: neutral, twister, all
         elif 'tell jokes' in query:
             My_joke = pyjokes.get_joke(language="en", category="all")
             print(My_joke)
             speak(My_joke)
-        elif 'todays news' in query:
+
+        elif 'todays news' and 'news today' in query:
             news_url="https://news.google.com/news/rss"
             Client=urlopen(news_url)
             xml_page=Client.read()
@@ -276,7 +284,7 @@ if __name__ == "__main__":
                 print(news.title.text)
                 speak(news.title.text)
                 print(news.link.text)
-                speak(news.link.text)
+                # speak(news.link.text)
                 print(news.pubDate.text)
                 speak(news.pubDate.text)
                 print("-"*60)
