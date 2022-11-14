@@ -9,7 +9,7 @@ pip3 install pywhatkit (for google search)<br><br>
 pip install selenium (for gmaps) <br><br>
 pip install tk (for login and todo list) <br><br>
 pip install pyjokes (for jokes) <br><br>
-pip install bs4 (for news)<br><br>
+pip install bs4 and pip install lxml(for news)<br><br>
 
  <br>
 Functions: <br>
