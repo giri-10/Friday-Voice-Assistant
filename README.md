@@ -8,7 +8,7 @@ pip install pyaudio<br><br>
 pip3 install pywhatkit<br><br>  (for google search)
 pip install selenium<br><br>  (for gmaps)
 pip install tk<br><br>   (for login and todo list)
-pip install bs4<br><br>  (for news)
+pip install bs4 & pip install lxml<br><br>  (for news)
 
  <br>
 Functions: <br>
