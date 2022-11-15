@@ -16,7 +16,6 @@ Functions: <br>
 ->> open youtube<br><br>
 ->> open google<br><br>
 ->> open github<br><br>
-->> open photoshop<br><br>
 ->> play music<br><br>
 ->> searching in wikipedia<br><br>
 ->> searching in Google<br><br>
