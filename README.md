@@ -13,14 +13,21 @@ pip install dadjokes (for dad jokes) <br><br>
 
  <br>
 Functions: <br>
-->> Login system
+->> Login system<br><br>
+->> Greets according to current time<br><br>
+->> Reaads out current time<br><br>
 ->> open YouTube<br><br>
+->> open Spotify<br><br>
 ->> open Google<br><br>
 ->> open Github<br><br>
+->> open Calculator<br><br>
+->> open Control Panel<br><br>
 ->> play Music<br><br>
 ->> Searching in Wikipedia<br><br>
 ->> Searching in Google<br><br>
 ->> Searching in Google Maps<br><br>
+->> Reads out and displays current news<br><br>
+->> Shows current weather of any place<br><br>
 ->> To-Do list<br><br>
 ->> Tells jokes<br><br>
 ->> News<br><br>
