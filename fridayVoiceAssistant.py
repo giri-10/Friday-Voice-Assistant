@@ -1,7 +1,7 @@
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
+import pyttsx3 
+import speech_recognition as sr 
 import datetime
-import wikipedia #pip install wikipedia
+import wikipedia 
 import webbrowser
 import os
 import smtplib
@@ -14,80 +14,73 @@ import os
 import requests
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import pyjokes
 import bs4
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 import sys
+from dadjokes import Dadjoke
 
-
-# # sapi5 is a speech api from Microsoft
+#Setting up voice from Microsoft
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[2].id)
 
+def Login_Info():
+    user_name = e1.get()
+    password = e2.get()
+ 
+    if(user_name == "" and password == "") :
+        messagebox.showinfo("", "Please enter username and password")
+ 
+ 
+    elif(user_name == "mvj1" and password == "1234"):
+ 
+        messagebox.showinfo("","Login Successfull!")
+        root.destroy()
+ 
+    else :
+        messagebox.showinfo("","Incorrect Username and Password")
 
-# def Login_Info():
-#     user_name = e1.get()
-#     password = e2.get()
+def on_close():
+    response = messagebox.showwarning('Warning','Please enter correct login details')
  
-#     if(user_name == "" and password == "") :
-#         messagebox.showinfo("", "Please enter username and password")
- 
- 
-#     elif(user_name == "mvj1" and password == "1234"):
- 
-#         messagebox.showinfo("","Login Successfull!")
-#         root.destroy()
- 
-#     else :
-#         messagebox.showinfo("","Incorrect Username and Password")
+root = Tk()
+root.title("Login: Friday")
+# root.iconbitmap(r'C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\jarvisLogo.ico') 
+root.iconbitmap(r'C:\\Users\\Giridharan U\\Downloads\\fridayLogo.ico')
 
-# def on_close():
-#     response = messagebox.showwarning('Warning','Please enter correct login details')
- 
-# root = Tk()
-# root.title("Login: Friday")
-# # root.iconbitmap(r'C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\jarvisLogo.ico') 
-# root.iconbitmap(r'C:\\Users\\Giridharan U\\Downloads\\fridayLogo.ico')
-
-# # bgimg= tk.PhotoImage(file = r'C:\\Users\\Giridharan U\\Downloads\\download.ppm')
-# # limg= Label(root, i=bgimg)
-# # limg.pack()
-# root.protocol('WM_DELETE_WINDOW',on_close)
+root.protocol('WM_DELETE_WINDOW',on_close)
 
 
-# root.geometry("450x250")
-# global e1
-# global e2
+root.geometry("450x250")
+global e1
+global e2
  
-# Label(root, text="User name").place(x=10, y=10)
-# Label(root, text="Password").place(x=10, y=40)
+Label(root, text="User name").place(x=10, y=10)
+Label(root, text="Password").place(x=10, y=40)
  
-# e1 = Entry(root)
-# e1.place(x=140, y=10)
+e1 = Entry(root)
+e1.place(x=140, y=10)
  
-# e2 = Entry(root)
-# e2.place(x=140, y=40)
-# e2.config(show="*")
+e2 = Entry(root)
+e2.place(x=140, y=40)
+e2.config(show="*")
  
  
-# Button(root, text="Login", command=Login_Info ,height = 2, width = 10).place(x=10, y=100)
+Button(root, text="Login", command=Login_Info ,height = 2, width = 10).place(x=10, y=100)
  
-# root.mainloop()
-
-
-
-
-
+root.mainloop()
 
 #After login success, voice assistant starts
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-# Function to greet user according to the time
 def greeting():
+    '''
+    Function to greet user according to the time
+    '''
     hour = int(datetime.datetime.now().hour)
 
     if hour >= 0 and hour < 12:
@@ -99,12 +92,10 @@ def greeting():
     else:
         speak("Good Night!!")
 
-    speak("This is Friday, your personal desktop voice assistant. How may I help you?")
-
+    speak("This is Friday")
 
 def takeCommand():
     # It takes microphone input from the user and returns string output
-
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -118,7 +109,6 @@ def takeCommand():
         print(f"User said: {query}\n")
 
     except Exception as e:
-        # print(e)
         print("Say that again please...")
         return "None"
     return query
@@ -126,6 +116,9 @@ def takeCommand():
 speak_count = 0
 
 if __name__ == "__main__":
+    '''
+    This is the main function of the program
+    '''
     greeting()
 
     while speak_count < 1:
@@ -158,22 +151,15 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
 
-        # elif 'open photoshop' in query:
-        #     PPath = "C:\\Program Files\\Adobe\\Adobe Photoshop 2022\\Photoshop.exe"
-        #     os.startfile(PPath)
-
         elif 'play music' in user_command:
-            music_dir = 'C:\\Music'
+            # music_dir = 'C:\\Music'
+            music_dir = 'C:\\Users\\Giridharan U\\Music'
             songs = os.listdir(music_dir)
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
 
         elif 'open spotify' in user_command:
             webbrowser.get(chrome_path).open("spotify.com")
-
-        # elif 'open cyberpunk' in query:
-        #     CPath = "C:\\Program Files\\Cyberpunk.2077.v1.6\\Cyberpunk.2077.v1.6\\REDprelauncher.exe"
-        #     os.startfile(CPath)
 
         elif 'open control panel' in user_command:
             os.system("control panel")
@@ -196,12 +182,18 @@ if __name__ == "__main__":
             time.sleep(100)
             driver.quit()
 
+        elif 'send whatsapp message' or 'send a whatsapp message' in user_command:
+              speak('Enter phone number to text including country code:')
+              whatsapp_no = str(input('Enter phone number to text including country code:'))
+              textMsg = str(takeCommand().lower())
+              #textMsg= str(input("Enter text:"))
+              kt.sendwhatmsg(whatsapp_no, textMsg , 6, 29)
+   
 
-        #category of jokes: neutral, twister, all
         elif 'tell jokes' in user_command:
-            My_joke = pyjokes.get_joke(language="en", category="all")
-            print(My_joke)
-            speak(My_joke)
+            dadjoke = Dadjoke()
+            print(dadjoke.joke)
+            speak(dadjoke.joke)
 
         elif 'news' in user_command:
             news_url="https://news.google.com/news/rss"
@@ -215,7 +207,6 @@ if __name__ == "__main__":
                 print(news.title.text)
                 speak(news.title.text)
                 print(news.link.text)
-                # speak(news.link.text)
                 print(news.pubDate.text)
                 speak(news.pubDate.text)
                 print("-"*60)
@@ -228,7 +219,6 @@ if __name__ == "__main__":
             res = requests.get(url)
             print(res.text)
 
-        # elif 'Todo list' or 'to do list' in query:
         elif 'memo' in user_command:
 
             def newTask():
@@ -242,14 +232,14 @@ if __name__ == "__main__":
             def deleteTask():
                 lb.delete(ANCHOR)
     
-            ws = Tk()
+            root = Tk()
             # ws.geometry('500x450+500+200')
-            ws.geometry('800x650+800+400')
-            ws.title('To Do List: Friday')
-            ws.config(bg='#223441')
-            ws.resizable(width=False, height=False)
+            root.geometry('800x650+800+400')
+            root.title('To Do List: Friday')
+            root.config(bg='#223441')
+            root.resizable(width=False, height=False)
 
-            frame = Frame(ws)
+            frame = Frame(root)
             frame.pack(pady=10)
 
             lb = Listbox(
@@ -277,13 +267,13 @@ if __name__ == "__main__":
             sb.config(command=lb.yview)
 
             my_entry = Entry(
-                ws,
+                root,
                 font=('times', 24)
                 )
 
             my_entry.pack(pady=20)
 
-            button_frame = Frame(ws)
+            button_frame = Frame(root)
             button_frame.pack(pady=20)
 
             addTask_btn = Button(
@@ -307,7 +297,10 @@ if __name__ == "__main__":
                 command=deleteTask
             )
             delTask_btn.pack(fill=BOTH, expand=True, side=LEFT)
-            ws.mainloop()
+            root.mainloop()
+
+        elif 'send whatsapp message' in user_command:
+              kt.sendwhatmsg("+919980833407","Automated msg", 18, 37)
         else:
             print("Wrong command")
             speak("Wrong command")
