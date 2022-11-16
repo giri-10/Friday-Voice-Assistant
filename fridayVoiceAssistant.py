@@ -23,7 +23,7 @@ from dadjokes import Dadjoke
 #Setting up voice from Microsoft
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[2].id)
+engine.setProperty('voice', voices[1].id)
 
 def Login_Info():
     user_name = e1.get()
@@ -35,7 +35,7 @@ def Login_Info():
  
     elif(user_name == "mvj1" and password == "1234"):
  
-        messagebox.showinfo("","Login Successfull!")
+        messagebox.showinfo("","Login Successful!")
         root.destroy()
  
     else :
@@ -85,14 +85,19 @@ def greeting():
 
     if hour >= 0 and hour < 12:
         speak("Good Morning!!")
+        print("Good Morning!!")
     elif hour >= 12 and hour < 15:
         speak("Good afternoon!!")
+        print("Good afternoon!!")
     elif hour >= 15 and hour < 19:
         speak("Good Evening!!")
+        print("Good Evening!!")
     else:
         speak("Good Night!!")
+        print("Good Night!!")
 
-    speak("This is Friday")
+    speak("This is Friday, how may I help you?")
+    print("This is Friday, how may I help you?")
 
 def takeCommand():
     # It takes microphone input from the user and returns string output
@@ -150,6 +155,7 @@ if __name__ == "__main__":
         elif 'time' in user_command:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
+            print(f"Sir, the time is {strTime}")
 
         elif 'play music' in user_command:
             # music_dir = 'C:\\Music'
@@ -167,8 +173,8 @@ if __name__ == "__main__":
         elif 'open calculator' in user_command:
             os.system("calc")
 
-        elif 'open' and 'website' in user_command:
-            user_command = user_command.replace("open" and "website", "")
+        elif 'website' in user_command:
+            user_command = user_command.replace("website", "")
             dotcom=".com"
             x=user_command+dotcom
             webbrowser.get(chrome_path).open(x)
@@ -182,12 +188,12 @@ if __name__ == "__main__":
             time.sleep(100)
             driver.quit()
 
-        elif 'send whatsapp message' or 'send a whatsapp message' in user_command:
-              speak('Enter phone number to text including country code:')
-              whatsapp_no = str(input('Enter phone number to text including country code:'))
-              textMsg = str(takeCommand().lower())
-              #textMsg= str(input("Enter text:"))
-              kt.sendwhatmsg(whatsapp_no, textMsg , 6, 29)
+        # elif 'send whatsapp message' or 'send a whatsapp message' in user_command:
+        #     speak('Enter phone number to text including country code:')
+        #     whatsapp_no = str(input('Enter phone number to text including country code:'))
+        #     textMsg = str(takeCommand().lower())
+        #     #textMsg= str(input("Enter text:"))
+        #     kt.sendwhatmsg(whatsapp_no, textMsg , 6, 29)
    
 
         elif 'tell jokes' in user_command:
@@ -301,6 +307,7 @@ if __name__ == "__main__":
 
         elif 'send whatsapp message' in user_command:
               kt.sendwhatmsg("+919980833407","Automated msg", 18, 37)
+
         else:
             print("Wrong command")
             speak("Wrong command")
