@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 import sys
 from dadjokes import Dadjoke
+from Bard import Chatbot
 
 #Setting up voice from Microsoft
 engine = pyttsx3.init()
@@ -29,11 +30,11 @@ def Login_Info():
     user_name = e1.get()
     password = e2.get()
  
-    if(user_name == "" and password == "") :
-        messagebox.showinfo("", "Please enter username and password")
+    # if(user_name == "" and password == "") :
+    #     messagebox.showinfo("", "Please enter username and password")
  
  
-    elif(user_name == "mvj1" and password == "1234"):
+    if(user_name == "mvj1" and password == "1234"):
  
         messagebox.showinfo("","Login Successful!")
         root.destroy()
@@ -47,8 +48,7 @@ def on_close():
 root = Tk()
 root.title("Login: Friday")
 # root.iconbitmap(r'C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\jarvisLogo.ico') 
-root.iconbitmap(r'C:\\Users\\Giridharan U\\Downloads\\fridayLogo.ico')
-
+# 
 root.protocol('WM_DELETE_WINDOW',on_close)
 
 
@@ -106,7 +106,7 @@ def takeCommand():
     with sr.Microphone() as source:
         print("Listening...")
         r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
+        audio = r.listen(source, phrase_time_limit=6)
 
     try:
         print("Recognizing...")
@@ -118,6 +118,13 @@ def takeCommand():
         return "None"
     return query
 
+token = 'XAg0_B40cwSPvEeWX5x03f4JV3LsLe7g1PHRyjw8oq8xUVn-Qork9Xf5te-qooqVs4Z2Vg.'
+chatbot = Chatbot(token)
+
+def prompt_bard(prompt):
+    response = chatbot.ask(prompt)
+    return response['content']
+
 speak_count = 0
 
 if __name__ == "__main__":
@@ -126,7 +133,7 @@ if __name__ == "__main__":
     '''
     greeting()
 
-    while speak_count < 1:
+    while speak_count < 5:
         user_command = takeCommand().lower()
         chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
         # Logic for executing tasks based on query
@@ -157,13 +164,6 @@ if __name__ == "__main__":
             speak(f"Sir, the time is {strTime}")
             print(f"Sir, the time is {strTime}")
 
-        elif 'play music' in user_command:
-            # music_dir = 'C:\\Music'
-            music_dir = 'C:\\Users\\Giridharan U\\Music'
-            songs = os.listdir(music_dir)
-            print(songs)
-            os.startfile(os.path.join(music_dir, songs[0]))
-
         elif 'open spotify' in user_command:
             webbrowser.get(chrome_path).open("spotify.com")
 
@@ -173,27 +173,15 @@ if __name__ == "__main__":
         elif 'open calculator' in user_command:
             os.system("calc")
 
-        elif 'website' in user_command:
-            user_command = user_command.replace("website", "")
-            dotcom=".com"
-            x=user_command+dotcom
-            webbrowser.get(chrome_path).open(x)
 
         elif 'in maps' in user_command:
             user_command = user_command.replace("search" and "in maps", "")
             # driver = webdriver.Chrome(executable_path='C:\\Users\\abhim\\OneDrive\\Desktop\\Project\\Web\\Jarvis\\chromedriver.exe')
-            driver = webdriver.Chrome(executable_path='C:\\Users\\Giridharan U\\Desktop\\Python\\Jarvis\\chromedriver.exe')
+            driver = webdriver.Chrome(executable_path='C:\\Users\\Giridharan U\\Downloads\\Friday-main\\chromedriver.exe')
             driver.get('https://www.google.com/maps/')
             searchBox = driver.find_element(By.ID, 'searchboxinput').send_keys(user_command + Keys.ENTER)
-            time.sleep(100)
+            time.sleep(30)
             driver.quit()
-
-        # elif 'send whatsapp message' or 'send a whatsapp message' in user_command:
-        #     speak('Enter phone number to text including country code:')
-        #     whatsapp_no = str(input('Enter phone number to text including country code:'))
-        #     textMsg = str(takeCommand().lower())
-        #     #textMsg= str(input("Enter text:"))
-        #     kt.sendwhatmsg(whatsapp_no, textMsg , 6, 29)
    
 
         elif 'tell jokes' in user_command:
@@ -224,6 +212,30 @@ if __name__ == "__main__":
             url = 'https://wttr.in/{}'.format(user_command)
             res = requests.get(url)
             print(res.text)
+
+        elif 'bard' or 'Bard' in user_command:
+
+              try:
+                            print("Wake word detected. Please speak your prompt to Bard. \n")
+                            time.sleep(3)
+                            prompt = takeCommand().lower()
+                            print("Sending to Bard:", prompt, '\n')
+                            # If prompt is empty, start listening for wake word again
+                            if len(prompt.strip()) == 0:
+                                          print("Empty prompt. Please speak again.")
+                                          speak("Empty prompt. Please speak again.")
+                                          continue
+              except Exception as e:
+                                          print("Error transcribing audio: ", e)
+                                          continue
+              response = prompt_bard(prompt)
+              if sys.platform.startswith('win'):
+                                          print('Bards response: ', response)
+              else:
+                                          # Prints Bard response in red for linux & mac terminal
+                                          print("\033[31m" + 'Bards response: ', response, '\n' + "\033[0m")
+              speak(response)
+
 
         elif 'memo' in user_command:
 
@@ -304,11 +316,3 @@ if __name__ == "__main__":
             )
             delTask_btn.pack(fill=BOTH, expand=True, side=LEFT)
             root.mainloop()
-
-        elif 'send whatsapp message' in user_command:
-              kt.sendwhatmsg("+919980833407","Automated msg", 18, 37)
-
-        else:
-            print("Wrong command")
-            speak("Wrong command")
-        speak_count += 1

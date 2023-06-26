@@ -1,0 +1,11 @@
+pyttsx3==2.90
+SpeechRecognition==3.8.1
+datetime
+wikipedia==1.4.0
+pywhatkit==5.1
+selenium==4.1.0
+tkinter
+requests==2.26.0
+beautifulsoup4==4.10.0
+dadjokes==2.0.2
+Bard==0.3.2
