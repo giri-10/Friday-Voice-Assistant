@@ -49,7 +49,7 @@
    pip install pyttsx3 speech_recognition wikipedia pywhatkit selenium requests bs4 dadjokes Bard
    ```
 
-3. Download the Chrome WebDriver and place it in the specified directory (`C:\\Users\\Giridharan U\\Downloads\\Friday-main\\chromedriver.exe`).
+3. Download the Chrome WebDriver and mention the correct path in the code
 
 4. Run the `Friday.py` script to start the voice assistant.
 
